@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Page Portfolio</title>
+
+<style>
+/* ===== GLOBAL STYLE ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    font-family:Arial;
+    background:#0e0e14;
+    color:white;
+}
+.container{
+    width:90%;
+    margin:auto;
+    max-width:1100px;
+}
+a{
+    color:white;
+    text-decoration:none;
+}
+
+/* ===== NAVBAR ===== */
+header{
+    background:#111;
+    position:fixed;
+    width:100%;
+    top:0;
+}
+.nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+}
+.nav ul{
+    display:flex;
+    list-style:none;
+}
+.nav ul li{
+    margin-left:15px;
+}
+.menu{
+    display:none;
+    cursor:pointer;
+}
+
+/* ===== HERO ===== */
+#home{
+    padding-top:90px;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+.btn{
+    background:#00d9ff;
+    padding:10px 20px;
+    border:none;
+    margin-top:10px;
+    cursor:pointer;
+}
+
+/* ===== ABOUT ===== */
+section{
+    padding:60px 0;
+}
+.title{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+/* ===== SKILLS ===== */
+.progress{
+    background:#222;
+    height:10px;
+}
+.bar{
+    height:10px;
+    width:0%;
+    background:#00d9ff;
+}
+
+/* ===== PROJECTS ===== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+.card{
+    background:#16161d;
+    padding:15px;
+}
+
+/* ===== CONTACT ===== */
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    background:#222;
+    border:none;
+    color:white;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    text-align:center;
+    background:#111;
+    padding:20px;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+.nav ul{
+    display:none;
+    flex-direction:column;
+    background:#111;
+    position:absolute;
+    top:60px;
+    left:0;
+    width:100%;
+}
+.menu{
+    display:block;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+<h3>Portfolio</h3>
+
+<ul id="links">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="menu" onclick="toggle()">☰</div>
+</div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="home">
+<div class="container">
+<h1>I am Your Name</h1>
+<p>Frontend Developer</p>
+<button class="btn">Download CV</button>
+</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+<div class="container">
+<h2 class="title">About Me</h2>
+<p>I am learning web development with HTML, CSS and JavaScript.</p>
+</div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+<div class="container">
+<h2 class="title">Skills</h2>
+
+<p>HTML</p>
+<div class="progress"><div class="bar" data="90"></div></div>
+
+<p>CSS</p>
+<div class="progress"><div class="bar" data="80"></div></div>
+
+<p>JavaScript</p>
+<div class="progress"><div class="bar" data="70"></div></div>
+
+</div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+<div class="container">
+<h2 class="title">Projects</h2>
+
+<div class="grid">
+<div class="card">
+<h3>Project 1</h3>
+<p>Demo project description</p>
+</div>
+
+<div class="card">
+<h3>Project 2</h3>
+<p>Demo project description</p>
+</div>
+
+<div class="card">
+<h3>Project 3</h3>
+<p>Demo project description</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+<div class="container">
+<h2 class="title">Contact</h2>
+
+<input placeholder="Name">
+<input placeholder="Email">
+<textarea placeholder="Message"></textarea>
+<button class="btn">Send</button>
+
+</div>
+</section>
+
+<footer>
+<p>© 2025 Your Name | Facebook | GitHub</p>
+</footer>
+
+<script>
+// ===== NAV TOGGLE =====
+function toggle(){
+    var links = document.getElementById("links");
+    if(links.style.display=="flex"){
+        links.style.display="none";
+    }else{
+        links.style.display="flex";
+    }
+}
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a').forEach(a=>{
+a.onclick=function(e){
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href"))
+    .scrollIntoView({behavior:"smooth"});
+}
+});
+
+// ===== SKILL ANIMATION =====
+window.addEventListener("scroll",function(){
+document.querySelectorAll(".bar").forEach(b=>{
+    var v=b.getAttribute("data");
+    var t=b.getBoundingClientRect().top;
+    if(t < window.innerHeight-50){
+        b.style.width=v+"%";
+    }
+});
+});
+</script>
+
+</body>
+</html>
